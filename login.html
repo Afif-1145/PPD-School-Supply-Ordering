@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login staff</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: linear-gradient(to bottom, #e3f0ff 0%, #f0f7ff 100%);
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background: 
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%231976d2" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom center / 100% 250px no-repeat,
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%2343a047" fill-opacity="0.04" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,149.3C672,139,768,149,864,165.3C960,181,1056,203,1152,197.3C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom center / 100% 200px no-repeat;
+    animation: wave-animation 15s ease-in-out infinite;
+  }
+  
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background: 
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%2342a5f5" fill-opacity="0.06" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,122.7C960,139,1056,149,1152,138.7C1248,128,1344,96,1392,80L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') top center / 100% 200px no-repeat,
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%2366bb6a" fill-opacity="0.04" d="M0,96L48,106.7C96,117,192,139,288,138.7C384,139,480,117,576,101.3C672,85,768,75,864,90.7C960,107,1056,149,1152,154.7C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') top center / 100% 180px no-repeat;
+    animation: wave-animation-reverse 18s ease-in-out infinite;
+  }
+  
+  @keyframes wave-animation {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-2%) translateY(-3px); }
+    50% { transform: translateX(0) translateY(-5px); }
+    75% { transform: translateX(2%) translateY(-3px); }
+  }
+  
+  @keyframes wave-animation-reverse {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(2%) translateY(3px); }
+    50% { transform: translateX(0) translateY(5px); }
+    75% { transform: translateX(-2%) translateY(3px); }
+  }
+
+  .container {
+    background: #fff;
+    padding: 36px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(25,118,210,0.15), 0 3px 12px rgba(0,0,0,0.08);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out;
+    position: relative;
+    z-index: 5;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  h2 {
+    color: #1976d2;
+    margin-bottom: 24px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: 2px solid #e3f0ff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25,118,210,0.1);
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    margin: 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(67,160,71,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  button:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+  
+  button:hover { 
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(67,160,71,0.4);
+  }
+  
+  button:active {
+    transform: translateY(-1px);
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  a:hover { text-decoration: underline; color: #125ea2; }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 28px 20px;
+      margin: 0 10px;
+      max-width: 100%;
+    }
+    h2 {
+      font-size: 24px;
+    }
+    input {
+      padding: 14px;
+      font-size: 16px; /* Prevent zoom on iOS */
+      box-sizing: border-box;
+    }
+    button {
+      padding: 14px 0;
+      min-height: 48px; /* Touch-friendly */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 24px 16px;
+      border-radius: 16px;
+    }
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email Staff">
+    <input type="password" id="password" placeholder="Kata Laluan">
+    <button id="loginBtn" type="button">Log Masuk</button>
+    <a href="forgot_password.html" style="font-size: 14px; margin-top: 10px; margin-bottom: 5px;">Lupa Password?</a>
+    <a href="index.html">Kembali</a>
+  </div>
+
+<script src="config.js"></script>
+<script>
+document.getElementById('loginBtn').addEventListener('click', async ()=>{
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  if(!email||!password){ alert('Sila lengkapkan semua ruangan'); return; }
+
+  // Check for admin credentials
+  if (email.toLowerCase() === 'admin' && password === 'admin123') {
+    localStorage.setItem('currentUser', JSON.stringify({name: 'Admin', email: 'admin', role: 'admin'}));
+    alert('Login Admin Berjaya!');
+    window.location.href='admin_dashboard.html';
+    return;
+  }
+
+  let loginSuccess = false;
+  
+  // Try Google Apps Script first jika dikonfigurasi
+  if (typeof isConfigured === 'function' && isConfigured()) {
+    try {
+      console.log('Attempting login with Google Sheet:', email);
+      const result = await loginUser(email, password);
+      console.log('Login result:', result);
+      
+      if (result && result.success) {
+        localStorage.setItem('currentUser', JSON.stringify(result.user));
+        alert('Login berjaya!');
+        window.location.href='order.html';
+        loginSuccess = true;
+      } else if (result && result.message) {
+        console.warn('Google Sheet login failed:', result.message);
+      }
+    } catch (error) {
+      console.error('Google Sheet error, trying localStorage fallback:', error);
+    }
+  }
+  
+  // Fallback ke localStorage jika Google Sheet fail atau tidak configured
+  if (!loginSuccess) {
+    console.log('Using localStorage for login');
+    let users = JSON.parse(localStorage.getItem('users')||'[]');
+    let user = users.find(u=>u.email===email && u.password===password);
+    if(user){ 
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      alert('Login berjaya!');
+      window.location.href='order.html';
+    } else { 
+      alert('Email atau kata laluan salah'); 
+    }
+  }
+});
+</script>
+</body>
+</html>
