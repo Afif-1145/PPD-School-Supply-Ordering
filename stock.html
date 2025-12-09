@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stok Barang - Staff</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #e3f0ff 0%, #f0f7ff 100%);
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background: 
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%231976d2" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom center / 100% 250px no-repeat,
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%2343a047" fill-opacity="0.04" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,149.3C672,139,768,149,864,165.3C960,181,1056,203,1152,197.3C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom center / 100% 200px no-repeat;
+    animation: wave-animation 15s ease-in-out infinite;
+  }
+  
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background: 
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%2342a5f5" fill-opacity="0.06" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,122.7C960,139,1056,149,1152,138.7C1248,128,1344,96,1392,80L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') top center / 100% 200px no-repeat,
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%2366bb6a" fill-opacity="0.04" d="M0,96L48,106.7C96,117,192,139,288,138.7C384,139,480,117,576,101.3C672,85,768,75,864,90.7C960,107,1056,149,1152,154.7C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') top center / 100% 180px no-repeat;
+    animation: wave-animation-reverse 18s ease-in-out infinite;
+  }
+  
+  @keyframes wave-animation {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-2%) translateY(-3px); }
+    50% { transform: translateX(0) translateY(-5px); }
+    75% { transform: translateX(2%) translateY(-3px); }
+  }
+  
+  @keyframes wave-animation-reverse {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(2%) translateY(3px); }
+    50% { transform: translateX(0) translateY(5px); }
+    75% { transform: translateX(-2%) translateY(3px); }
+  }
+
+  .container {
+    position: relative;
+    width: 90%;
+    max-width: 480px;
+    background: #fff;
+    border-radius: 28px;
+    padding: 40px 36px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(25,118,210,0.15), 0 3px 12px rgba(0,0,0,0.08);
+    z-index: 5;
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  h2 {
+    color: #1976d2;
+    margin-bottom: 28px;
+    font-weight: 700;
+    font-size: 28px;
+    position: relative;
+    letter-spacing: -0.5px;
+  }
+  h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    margin: 8px auto 0 auto;
+    background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+    border-radius: 2px;
+  }
+
+  ul { list-style:none; padding:0; margin:0 0 28px 0; }
+  li {
+    background: linear-gradient(90deg,#f0f7ff 0%,#e3f0ff 100%);
+    margin-bottom: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    color: #1976d2;
+    font-weight: 600;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(25,118,210,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  li:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(25,118,210,0.15); }
+
+  a.btn {
+    display: inline-block;
+    margin-top: 12px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(67,160,71,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  a.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  a.btn:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+  
+  a.btn:hover { 
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(67,160,71,0.4);
+  }
+
+  a.secondary-btn {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #1976d2;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  a.secondary-btn:hover { text-decoration: underline; color: #125ea2; }
+
+  @media(max-width:500px){
+    .container{ padding:32px 24px; }
+    li{ padding:12px 14px; }
+    a.btn{ padding:10px 16px; }
+  }
+</style>
+</head>
+<body>
+<main class="container">
+  <h2>Stok Barang Semasa</h2>
+  <ul id="teacherStockList"></ul>
+
+  <a href="order.html" class="btn">Kembali ke Borang Order</a>
+</main>
+
+<script src="config.js"></script>
+<script>
+async function loadStockFromGoogleSheet() {
+  const ul = document.getElementById("teacherStockList");
+  ul.innerHTML = "<li>Memuatkan stok...</li>";
+  
+  try {
+    let items = [];
+    
+    // Cuba ambil dari Google Sheet dulu (always fetch fresh)
+    if (typeof isConfigured === 'function' && isConfigured()) {
+      items = await getItems();
+      console.log('Loaded from Google Sheet:', items.length, 'items');
+      
+      // Update localStorage dengan fresh data
+      if (items && items.length > 0) {
+        localStorage.setItem('itemsStock', JSON.stringify(items));
+      } else {
+        localStorage.removeItem('itemsStock');
+      }
+    }
+    
+    // Fallback ke localStorage jika Google Sheet fail
+    if (!items || items.length === 0) {
+      items = JSON.parse(localStorage.getItem('itemsStock') || '[]');
+      console.log('Fallback to localStorage:', items.length, 'items');
+    }
+
+    ul.innerHTML = "";
+
+    if (!items || items.length === 0) {
+      let li = document.createElement("li");
+      li.textContent = "Tiada stok tersedia.";
+      ul.appendChild(li);
+      console.log('No items to display');
+      return;
+    }
+
+    items.forEach(item => {
+      let li = document.createElement("li");
+      li.textContent = `${item.name}: ${item.stock}`;
+      ul.appendChild(li);
+    });
+
+  } catch (error) {
+    console.error("ERROR loading stock:", error);
+
+    ul.innerHTML = "<li>Gagal memuatkan stok. Sila cuba lagi.</li>";
+  }
+}
+
+// Load stok masa page dibuka
+loadStockFromGoogleSheet();
+</script>
+
+</body>
+</html>
